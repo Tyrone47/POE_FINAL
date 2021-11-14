@@ -11,6 +11,9 @@ namespace POE_FINAL
     {
         private Map map;
 
+
+        private Shop shop;
+
         public Map GetMap()
         {
             return this.map;
