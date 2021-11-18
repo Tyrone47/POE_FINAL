@@ -39,6 +39,7 @@ namespace POE_FINAL
             this.btnPlayerAttack = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoadGame = new System.Windows.Forms.Button();
+            this.btnBuyWeapon = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUp
@@ -117,7 +118,7 @@ namespace POE_FINAL
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1094, 442);
+            this.btnSave.Location = new System.Drawing.Point(1107, 545);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 41);
             this.btnSave.TabIndex = 11;
@@ -127,7 +128,7 @@ namespace POE_FINAL
             // 
             // btnLoadGame
             // 
-            this.btnLoadGame.Location = new System.Drawing.Point(1094, 533);
+            this.btnLoadGame.Location = new System.Drawing.Point(1107, 604);
             this.btnLoadGame.Name = "btnLoadGame";
             this.btnLoadGame.Size = new System.Drawing.Size(94, 41);
             this.btnLoadGame.TabIndex = 12;
@@ -135,11 +136,22 @@ namespace POE_FINAL
             this.btnLoadGame.UseVisualStyleBackColor = true;
             this.btnLoadGame.Click += new System.EventHandler(this.btnLoadGame_Click);
             // 
+            // btnBuyWeapon
+            // 
+            this.btnBuyWeapon.Location = new System.Drawing.Point(1107, 442);
+            this.btnBuyWeapon.Name = "btnBuyWeapon";
+            this.btnBuyWeapon.Size = new System.Drawing.Size(94, 41);
+            this.btnBuyWeapon.TabIndex = 13;
+            this.btnBuyWeapon.Text = "Buy Weapn";
+            this.btnBuyWeapon.UseVisualStyleBackColor = true;
+            this.btnBuyWeapon.Click += new System.EventHandler(this.btnBuyWeapon_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 662);
+            this.Controls.Add(this.btnBuyWeapon);
             this.Controls.Add(this.btnLoadGame);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnPlayerAttack);
@@ -169,6 +181,7 @@ namespace POE_FINAL
         private System.Windows.Forms.Button btnPlayerAttack;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoadGame;
+        private System.Windows.Forms.Button btnBuyWeapon;
     }
 }
 

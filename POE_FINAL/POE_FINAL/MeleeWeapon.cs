@@ -21,7 +21,7 @@ namespace POE_FINAL
 
         
 
-        public MeleeWeapon(Type weaponType,int x , int y , string symbol ) : base(x,y,symbol)
+        public MeleeWeapon(Type weaponType, string symbol , int x = 0 , int y = 0 ) : base(x,y,symbol)
         {
             if(weaponType == Type.Dagger)
             {

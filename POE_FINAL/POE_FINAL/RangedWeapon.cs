@@ -16,7 +16,7 @@ namespace POE_FINAL
             return base.range;
         }
 
-        public RangedWeapon(Types weaponTypes, int x, int y, string symbol) : base(x, y, symbol)
+        public RangedWeapon(Types weaponTypes, string symbol, int x = 0, int y = 0) : base(x, y, symbol)
         {
             if (weaponTypes == Types.Rifle)
             {

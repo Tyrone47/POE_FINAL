@@ -15,7 +15,7 @@ namespace POE_FINAL
         public override MovementEnum ReturnMove(MovementEnum move)
         {
 
-            MovementEnum movement = MovementEnum.NOMOVEMENT;//Initialise Movement to be NOMOVEMENT by default
+            MovementEnum movement = MovementEnum.NOMOVEMENT;//Initialised Movement to be NOMOVEMENT by default
             EmptyTile empty = new EmptyTile(0, 0);
 
             bool notFoundMovement = true;

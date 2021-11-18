@@ -105,5 +105,10 @@ namespace POE_FINAL
             
             txtDisplayGame.Text = this.gameEngine.Load();
         }
+
+        private void btnBuyWeapon_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
