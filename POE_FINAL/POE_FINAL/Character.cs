@@ -167,6 +167,10 @@ namespace POE_FINAL
                 Gold g = (Gold)i;
                 this.IncrementGoldAmmount(g.GetGoldAmmount());
             }
+            if (i.GetType() == typeof(Weapon))
+            {
+
+            }
         }
 
     }

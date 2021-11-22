@@ -18,9 +18,9 @@ namespace POE_FINAL
             this.weaponsArray = new Weapon[3];
             this.random = new Random();
 
-            for (int i = 0; i < weaponsArray.Length; i++)
+            for (int i = 0; i < this.weaponsArray.Length; i++)
             {
-                weaponsArray[i] = RandomWeapon();
+                this.weaponsArray[i] = this.RandomWeapon();
             }
 
 
@@ -56,31 +56,32 @@ namespace POE_FINAL
 
             int playerGold;
             int weaponCost;
+            bool canBuy = false;
 
-            if (num < 0 || num > 3)
+            if (num < 0 || num > this.weaponsArray.Length - 1)
             {
-                throw new System.ArgumentException("Error");
+                throw new System.IndexOutOfRangeException("It is out of bounds. No weapon found in that position");
+            }
+
+             playerGold = this.buyer.GetGoldPurse();
+             weaponCost = this.weaponsArray[num].GetCost();
+
+            if (playerGold >= weaponCost )
+            {
+                canBuy = true;
             }
             
-
-             
-
-            for (int i = 0; i < weaponsArray.Length; i++)
-            {
-                playerGold = buyer.GetGoldPurse();
-                weaponCost = weaponsArray[num].GetCost();
-
-                if (playerGold > weaponCost )
-                {
-                    Buy(i);
-                }
-            }
-           return true;
+           return canBuy;
         }
 
         public void Buy(int num)
         {
-           
+            if (this.CanBuy(num))
+            {
+                this.buyer.SetGoldPurse(this.buyer.GetGoldPurse() - this.weaponsArray[num].GetCost());
+                this.buyer.Pickup(this.weaponsArray[num]);
+                this.weaponsArray[num] = this.RandomWeapon();
+            }
 
         }
 
