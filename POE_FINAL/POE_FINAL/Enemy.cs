@@ -16,7 +16,10 @@ namespace POE_FINAL
         }
         public override string ToString()
         {
-            return typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+            string enemyStats = "";
+            enemyStats += typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+
+            return enemyStats
         }
     }
 }

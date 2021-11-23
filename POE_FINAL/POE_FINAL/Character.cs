@@ -23,7 +23,16 @@ namespace POE_FINAL
     }
     public abstract class Character : Tile
     {
-        private int goldPurse; 
+        private int goldPurse;
+
+        protected Weapon weapon;
+
+        
+
+        public Weapon GetWeapon()
+        {
+            return this.weapon;
+        }
 
         public int GetGoldPurse()
         {
@@ -167,10 +176,14 @@ namespace POE_FINAL
                 Gold g = (Gold)i;
                 this.IncrementGoldAmmount(g.GetGoldAmmount());
             }
-            if (i.GetType() == typeof(Weapon))
+            else if (i.GetType() == typeof(Weapon))
             {
-
+                this.Equip((Weapon)i);
             }
+        }
+        private void Equip(Weapon w)
+        {
+            this.weapon = w;
         }
 
     }

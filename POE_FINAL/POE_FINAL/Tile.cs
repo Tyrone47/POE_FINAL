@@ -11,7 +11,8 @@ namespace POE_FINAL
         Gold,
         Weapon,
         Goblin,
-        Mage
+        Mage,
+        Leader
     }
 
     /// <summary>

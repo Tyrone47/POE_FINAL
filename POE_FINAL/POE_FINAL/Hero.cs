@@ -66,7 +66,19 @@ namespace POE_FINAL
             playerStats += " HP: " + this.HP + "/" + this.maxHP + System.Environment.NewLine;
             playerStats += "Damage: " + this.damage + System.Environment.NewLine;
             playerStats += "[" + this.x + ", " + this.y + "]" + System.Environment.NewLine;
-            playerStats += "Gold Ammount " + this.GetGoldPurse();
+            playerStats += "Gold Ammount :" + this.GetGoldPurse() + System.Environment.NewLine;
+            if (this.weapon == null)
+            {
+                playerStats += " Current Weapon: Bare Hands";
+
+            }
+            else
+            {
+                playerStats += " Current Weapon: " + this.weapon.GetWeaponType() + System.Environment.NewLine;
+                playerStats += "Weapon Range" + this.weapon.GetRange() + System.Environment.NewLine;
+                playerStats += "Weapon Damage" + this.weapon.GetDamage();
+            }
+            
 
             return playerStats;               
         }

@@ -19,9 +19,9 @@ namespace POE_FINAL
             return this.map;
         }
 
-        public  GameEngine(int minWidth, int maxWidth, int minHeight, int maxHeight, int numOfEnemies, int goldDrops)
+        public  GameEngine(int minWidth, int maxWidth, int minHeight, int maxHeight, int numOfEnemies, int goldDrops , int weaponDrops)
         {
-            this.map = new Map(minWidth, maxWidth, minHeight, maxHeight, numOfEnemies, goldDrops);
+            this.map = new Map(minWidth, maxWidth, minHeight, maxHeight, numOfEnemies, goldDrops , weaponDrops);
              
         }
 

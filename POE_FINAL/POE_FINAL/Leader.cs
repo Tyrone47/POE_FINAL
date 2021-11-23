@@ -22,7 +22,7 @@ namespace POE_FINAL
 
         public Leader(int x, int y ) : base(x, y, 2, 20, "L")
         {
-
+            this.weapon = new MeleeWeapon(Type.Longsword, "Ls");
         }
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NOMOVEMENT)

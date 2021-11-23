@@ -10,6 +10,7 @@ namespace POE_FINAL
         {
             
             this.random = new Random();
+            this.weapon = new MeleeWeapon(Type.Dagger, "D");
         }
 
         public override MovementEnum ReturnMove(MovementEnum move)

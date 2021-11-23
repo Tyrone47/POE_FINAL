@@ -4,13 +4,14 @@ using System.Text;
 
 namespace POE_FINAL
 {
-    abstract class Weapon : Item
+    public abstract class Weapon : Item
     {
         protected int damage;
         protected int range;
         protected int durability;
         protected int cost;
         protected string weaponType;
+        
 
         public void SetDamage(int damage)
         {

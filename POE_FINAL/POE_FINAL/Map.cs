@@ -50,7 +50,7 @@ namespace POE_FINAL
         
 
 
-        public Map( int minWidth , int maxWidth, int minHeight , int maxHeight , int numOfEnemies , int goldDrops)
+        public Map( int minWidth , int maxWidth, int minHeight , int maxHeight , int numOfEnemies , int goldDrops , int weaponDrops)
         {
             this.random = new Random();
 
@@ -109,24 +109,32 @@ namespace POE_FINAL
             
             for (int i = 0; i < numOfEnemies; i++)
             {
-                int choice = this.random.Next(0, 2);// 0 = Goblin , 1 = Mage , 2 = Gold. 
+                int choice = this.random.Next(0, 3);// 0 = Goblin , 1 = Mage , 2 = Leader. 
                     //These represent the enemy types called at random
                 if (choice == 0)
                 {
                     this.enemyArray[i] = (Enemy)this.Create(TileType.Goblin);
                 }
-                else  
+                else if(choice == 1) 
                 {
                     this.enemyArray[i] = (Enemy)this.Create(TileType.Mage);
+                }
+                else
+                {
+                    this.enemyArray[i] = (Enemy)this.Create(TileType.Leader);
                 }
                 
             }
             //populets the Item array with the parameter
-            this.items = new Item[goldDrops];
+            this.items = new Item[goldDrops + weaponDrops];
 
             for (int i = 0; i < goldDrops; i++)
             {
                 this.items[i] = (Gold)this.Create(TileType.Gold);
+            }
+            for (int i = goldDrops; i < this.items.Length; i++)
+            {
+                this.items[i] = (Weapon)this.Create(TileType.Weapon);
             }
             this.UpdateVision();
         }
@@ -234,6 +242,29 @@ namespace POE_FINAL
                 return tempMage;
 
             }
+            else if (tileType == TileType.Leader)
+            {
+                bool isLeaderAssigned = false;
+                Mage tempLeader = null;
+
+                while (!isLeaderAssigned)
+                {
+
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                    {
+                        tempLeader = new Mage(x, y);
+                        this.tileMap[x, y] = tempLeader;
+                        isLeaderAssigned = true;
+                    }
+
+
+                }
+
+                return tempLeader;
+            }
+
             if (tileType == TileType.Gold)
             {
 
@@ -258,9 +289,57 @@ namespace POE_FINAL
                 return tempGold;
                 
             }
+            else if(tileType == TileType.Weapon)
+            {
+                bool isWeaponAssigned = false;
+                Weapon tempWeapon = null;
+
+                while (!isWeaponAssigned)
+                {
+
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                    {
+                        tempWeapon = RandomWeapon();
+                        tempWeapon.setX(x);
+                        tempWeapon.setY(y);
+                        this.tileMap[x, y] = tempWeapon;
+                        isWeaponAssigned = true;
+                    }
+
+
+                }
+
+                return tempWeapon;
+            }
             return new EmptyTile(0,0);
 
             
+        }
+        private Weapon RandomWeapon()
+        {
+            int random = this.random.Next(1, 5);
+            Weapon weapon = null;
+            if (random == 1) // Creates a Dagger
+            {
+                weapon = new MeleeWeapon(Type.Dagger, "D");
+            }
+            else if (random == 2) // Creates a Longsword
+            {
+                weapon = new MeleeWeapon(Type.Longsword, "L");
+            }
+            else if (random == 3)  //Creates a Longbow
+            {
+                weapon = new RangedWeapon(Types.Longbow, "B");
+            }
+            else if (random == 4) // Creates a Rifle
+            {
+                weapon = new RangedWeapon(Types.Rifle, "R");
+            }
+
+            return weapon;
+
         }
         public override string ToString()
         {
