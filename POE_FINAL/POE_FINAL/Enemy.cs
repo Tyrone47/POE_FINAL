@@ -17,9 +17,19 @@ namespace POE_FINAL
         public override string ToString()
         {
             string enemyStats = "";
-            enemyStats += typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
 
-            return enemyStats
+            if (this.GetWeapon() == null)
+            {
+                enemyStats += "Barehanded: " + typeof(Enemy).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+            }
+            else
+            {
+                enemyStats += "Equipped: " + typeof(Enemy).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] with "
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage();
+            }
+            //enemyStats += typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+            // enemyStats += Mage at[ 4,13] (Amount DMG = 5)   (Current HP = 5)
+            return enemyStats;
         }
     }
 }

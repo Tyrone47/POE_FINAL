@@ -245,7 +245,7 @@ namespace POE_FINAL
             else if (tileType == TileType.Leader)
             {
                 bool isLeaderAssigned = false;
-                Mage tempLeader = null;
+                Leader tempLeader = null;
 
                 while (!isLeaderAssigned)
                 {
@@ -254,7 +254,7 @@ namespace POE_FINAL
                     int y = this.random.Next(1, this.height - 2);
                     if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
                     {
-                        tempLeader = new Mage(x, y);
+                        tempLeader = new Leader(x, y);
                         this.tileMap[x, y] = tempLeader;
                         isLeaderAssigned = true;
                     }
@@ -327,7 +327,7 @@ namespace POE_FINAL
             }
             else if (random == 2) // Creates a Longsword
             {
-                weapon = new MeleeWeapon(Type.Longsword, "L");
+                weapon = new MeleeWeapon(Type.Longsword, "Ls");
             }
             else if (random == 3)  //Creates a Longbow
             {

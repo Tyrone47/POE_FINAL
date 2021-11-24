@@ -149,5 +149,28 @@ namespace POE_FINAL
             return move;
         }
 
+        public override string ToString()
+        {
+            string leadStats = "";
+            if (this.GetWeapon() == null)
+            {
+                leadStats += "Barehanded: " + typeof(Leader).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+            }
+            else
+            {
+                leadStats += "Equipped: " + typeof(Leader).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] with "
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+            }
+            return leadStats;
+
+        }
+        public override void Attack(Character target)
+        {
+            if (this.CheckRange(target))
+            {
+                target.SetHP(target.GetHP() - 1);
+            }
+        }
+
     }
 }

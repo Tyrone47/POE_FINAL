@@ -108,45 +108,45 @@ namespace POE_FINAL
             
             return this.map.ToString(); 
         }
-        private void MoveEnemy(Goblin goblin , MovementEnum move)
+        private void MoveEnemy(Enemy enemy , MovementEnum move)
         {
             
             if (move == MovementEnum.UP)
             {
-                int currentX = goblin.getX();
-                int currentY = goblin.getY();
-                goblin.setY(currentY + 1);
-                this.map.placeTileOnMap(goblin);
+                int currentX = enemy.getX();
+                int currentY = enemy.getY();
+                enemy.setY(currentY + 1);
+                this.map.placeTileOnMap(enemy);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
                 this.map.placeTileOnMap(emptyTile);
                 this.map.UpdateVision();
             }
             else if (move == MovementEnum.DOWN)
             {
-                int currentX = goblin.getX();
-                int currentY = goblin.getY();
-                goblin.setY(currentY - 1);
-                this.map.placeTileOnMap(goblin);
+                int currentX = enemy.getX();
+                int currentY = enemy.getY();
+                enemy.setY(currentY - 1);
+                this.map.placeTileOnMap(enemy);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
                 this.map.placeTileOnMap(emptyTile);
                 this.map.UpdateVision();
             }
             else if (move == MovementEnum.LEFT)
             {
-                int currentX = goblin.getX();
-                int currentY = goblin.getY();           
-                goblin.setX(currentX - 1);
-                this.map.placeTileOnMap(goblin);
+                int currentX = enemy.getX();
+                int currentY = enemy.getY();           
+                enemy.setX(currentX - 1);
+                this.map.placeTileOnMap(enemy);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
                 this.map.placeTileOnMap(emptyTile);
                 this.map.UpdateVision();   
             }
             else if (move == MovementEnum.RIGHT)
             {
-                int currentX = goblin.getX();
-                int currentY = goblin.getY();
-                goblin.setX(currentX + 1);
-                this.map.placeTileOnMap(goblin);
+                int currentX = enemy.getX();
+                int currentY = enemy.getY();
+                enemy.setX(currentX + 1);
+                this.map.placeTileOnMap(enemy);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
                 this.map.placeTileOnMap(emptyTile);
                 this.map.UpdateVision();      
@@ -165,6 +165,15 @@ namespace POE_FINAL
                     MovementEnum move = this.map.GetEnemyArray()[i].ReturnMove(direction);
                     this.MoveEnemy((Goblin)this.map.GetEnemyArray()[i], move);
                 }
+                else if (this.map.GetEnemyArray()[i].GetType() == typeof(Leader))
+                {
+                    
+                    Leader leader = (Leader)this.map.GetEnemyArray()[i];
+                    leader.SetleadTarget(this.map.GetHero());
+                    MovementEnum move = this.map.GetEnemyArray()[i].ReturnMove();
+                    this.MoveEnemy((Leader)this.map.GetEnemyArray()[i], move);
+
+                }
             }
             this.EnemyAttack();
         }
@@ -178,9 +187,11 @@ namespace POE_FINAL
 
                 for (int j = 0; j < characterVision.Length; j++)
                 {
-                    if (characterVision[j].Equals(new EmptyTile(characterVision[j].getX(), characterVision[j].getY())) ||
-                        characterVision[j].Equals(new Obstacle(characterVision[j].getX(), characterVision[j].getY()))  ||
-                        characterVision[j].Equals(new Gold(characterVision[j].getX(), characterVision[j].getY()))) 
+                    if (characterVision[j].GetType() == typeof(EmptyTile) ||
+                        characterVision[j].GetType() == typeof(Obstacle)  ||
+                        characterVision[j].GetType() == typeof(Gold)      ||
+                        characterVision[j].GetType() == typeof(MeleeWeapon)   ||
+                        characterVision[j].GetType() == typeof(RangedWeapon))
 
                     {
                         continue;

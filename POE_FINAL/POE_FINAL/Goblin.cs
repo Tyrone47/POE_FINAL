@@ -63,7 +63,18 @@ namespace POE_FINAL
 
         public override string ToString()
         {
-            return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ") (Current HP = " + this.GetHP() + ")";
+            string goblinStats = "";
+            // return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ") (Current HP = " + this.GetHP() + ")";
+            if (this.GetWeapon() == null)
+            {
+                goblinStats += "Barehanded: " + typeof(Goblin).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+            }
+            else
+            {
+                goblinStats += "Equipped: " + typeof(Goblin).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] with "
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+            }
+            return goblinStats;
         }
     }
 }

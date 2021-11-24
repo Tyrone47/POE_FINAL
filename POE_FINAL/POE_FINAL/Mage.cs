@@ -55,7 +55,17 @@ namespace POE_FINAL
 
         public override string ToString()
         {
-            return typeof(Mage).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")   (Current HP = " + this.GetHP() + ")";
+            string mageStats = "";
+            if (this.GetWeapon() == null)
+            {
+                mageStats += "Barehanded: " + typeof(Mage).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+            }
+            else
+            {
+                mageStats += "Equipped: " + typeof(Mage).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] with "
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+            }
+            return mageStats;
         }
     }
 }

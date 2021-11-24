@@ -36,7 +36,7 @@ namespace POE_FINAL
             }
             else if (random == 2) // Creates a Longsword
             {
-                 weapon = new MeleeWeapon(Type.Longsword, "L");
+                 weapon = new MeleeWeapon(Type.Longsword, "Ls");
             }
             else if (random == 3)  //Creates a Longbow
             {

@@ -23,7 +23,7 @@ namespace POE_FINAL
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.gameEngine = new GameEngine(20, 20, 20, 20, 3, 5 , 5);
+            this.gameEngine = new GameEngine(20, 20, 20, 20, 5, 5 , 5);
             txtDisplayGame.Text = gameEngine.ToString();           
             this.DisplayCharacterStats();
         }
