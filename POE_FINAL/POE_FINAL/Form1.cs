@@ -23,9 +23,15 @@ namespace POE_FINAL
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             this.gameEngine = new GameEngine(20, 20, 20, 20, 5, 5 , 5);
             txtDisplayGame.Text = gameEngine.ToString();           
             this.DisplayCharacterStats();
+            Shop shop = this.gameEngine.GetShop();
+            btnWeapon1.Text = shop.DisplayWeapon(0);
+            btnWeapon2.Text = shop.DisplayWeapon(1);
+            btnWeapon3.Text = shop.DisplayWeapon(2);
+            btnWeapon4.Text = shop.DisplayWeapon(3);
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -69,7 +75,7 @@ namespace POE_FINAL
             {
 
                 if (playerCharVision[i].Equals(new EmptyTile (playerCharVision[i].getX(), playerCharVision[i].getY())) ||
-                    playerCharVision[i].Equals(new Obstacle(playerCharVision[i].getX(), playerCharVision[i].getY())) )
+                    playerCharVision[i].Equals(new Obstacle(playerCharVision[i].getX(), playerCharVision[i].getY())))
                 {
                     continue;
                 }
@@ -107,6 +113,31 @@ namespace POE_FINAL
         }
 
         private void btnBuyWeapon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWeapon1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWeapon2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWeapon3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWeapon4_Click(object sender, EventArgs e)
         {
 
         }

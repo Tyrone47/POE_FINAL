@@ -23,6 +23,7 @@ namespace POE_FINAL
         public Leader(int x, int y ) : base(x, y, 2, 20, "L")
         {
             this.weapon = new MeleeWeapon(Type.Longsword, "Ls");
+            this.SetGoldPurse(2);
         }
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NOMOVEMENT)
@@ -134,9 +135,9 @@ namespace POE_FINAL
                 while (!isValidMove)
                 {
                     MovementEnum moves = (MovementEnum)randMove;
-                    if ((moves == MovementEnum.UP && this.characterVision[0].Equals(new EmptyTile(this.x, this.y + 1)))
-                       || (moves == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(this.x, this.y - 1)))
-                       || (moves == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(this.x + 1, this.y))))
+                    if ((moves == MovementEnum.UP && this.characterVision[0].Equals(new EmptyTile(getX(),getY() - 1)))
+                       || (moves == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(getX(), getY() - 1)))
+                       || (moves == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(getX() - 1, getY()))))
                     {
                         isValidMove = true;
                     }
@@ -154,19 +155,21 @@ namespace POE_FINAL
             string leadStats = "";
             if (this.GetWeapon() == null)
             {
-                leadStats += "Barehanded: " + typeof(Leader).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+                leadStats += "Barehanded: " + typeof(Leader).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] (" + this.damage + ") Gold( "
+                    +  this.GetGoldPurse() + ")";
             }
             else
             {
                 leadStats += "Equipped: " + typeof(Leader).Name + this.HP + "/" + this.maxHP + " at[ " + this.x + "," + this.y + "] with "
-                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ") Gold("
+                           + this.GetGoldPurse() + ")";
             }
             return leadStats;
 
         }
         public override void Attack(Character target)
         {
-            if (this.CheckRange(target))
+            if (target.GetType() == typeof(Hero) && !target.IsDead() && this.CheckRange(target))
             {
                 target.SetHP(target.GetHP() - 1);
             }

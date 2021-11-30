@@ -19,9 +19,15 @@ namespace POE_FINAL
             return this.map;
         }
 
+        public Shop GetShop()
+        {
+            return this.shop;
+        }
+
         public  GameEngine(int minWidth, int maxWidth, int minHeight, int maxHeight, int numOfEnemies, int goldDrops , int weaponDrops)
         {
             this.map = new Map(minWidth, maxWidth, minHeight, maxHeight, numOfEnemies, goldDrops , weaponDrops);
+            this.shop = new Shop(this.map.GetHero());
              
         }
 

@@ -9,7 +9,7 @@ namespace POE_FINAL
 
         public Mage(int x, int y) : base(x, y, 5, 5, "M")
         {
-
+            this.SetGoldPurse(3);
         }
 
         public override MovementEnum ReturnMove(MovementEnum move)
@@ -35,7 +35,10 @@ namespace POE_FINAL
              **/
 
 
-            if (target.GetType() == typeof(Enemy) || target.GetType() == typeof(Hero))
+            if (target.GetType() == typeof(Goblin) ||
+                target.GetType() == typeof(Mage)   ||
+                target.GetType() == typeof(Leader) ||
+                target.GetType() == typeof(Hero))
             {
                 int distance = this.DistanceTo(target);
                 if (distance == 1 || distance == 2)
@@ -47,10 +50,21 @@ namespace POE_FINAL
         }
         public override void Attack(Character target)
         {
-            if (this.CheckRange(target))
+            if (!target.IsDead() && this.CheckRange(target))
             {
                 target.SetHP(target.GetHP() - 5);
             }
+        }
+
+        public override void Loot(Character target)
+        {
+            if (target.IsDead())
+            {
+                //Loot Gold.
+                this.SetGoldPurse(this.GetGoldPurse() + target.GetGoldPurse());
+                target.SetGoldPurse(0);
+            }
+
         }
 
         public override string ToString()
@@ -58,12 +72,14 @@ namespace POE_FINAL
             string mageStats = "";
             if (this.GetWeapon() == null)
             {
-                mageStats += "Barehanded: " + typeof(Mage).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+                mageStats += "Barehanded: " + typeof(Mage).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")"
+                          + this.GetGoldPurse() + ")";
             }
             else
             {
                 mageStats += "Equipped: " + typeof(Mage).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] with "
-                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ") Gold( "
+                           + this.GetGoldPurse() + ")";
             }
             return mageStats;
         }

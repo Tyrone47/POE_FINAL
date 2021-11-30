@@ -6,11 +6,15 @@ namespace POE_FINAL
 {
     class Goblin : Enemy
     {
+        
+
         public Goblin(int x, int y) : base(x, y , 10 , 1 ,"G")
         {
             
             this.random = new Random();
             this.weapon = new MeleeWeapon(Type.Dagger, "D");
+            this.SetGoldPurse(1);
+            
         }
 
         public override MovementEnum ReturnMove(MovementEnum move)
@@ -55,9 +59,10 @@ namespace POE_FINAL
         }
         public override void Attack(Character target)
         {
-            if (this.CheckRange(target))
+            if (target.GetType() == typeof(Hero) && !target.IsDead() && this.CheckRange(target))
             {
                 target.SetHP(target.GetHP() - 1);
+
             }
         }
 
@@ -67,12 +72,14 @@ namespace POE_FINAL
             // return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ") (Current HP = " + this.GetHP() + ")";
             if (this.GetWeapon() == null)
             {
-                goblinStats += "Barehanded: " + typeof(Goblin).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")";
+                goblinStats += "Barehanded: " + typeof(Goblin).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] (" + this.damage + ")"
+                            + " Gold(" + this.GetGoldPurse() + ")";
             }
             else
             {
                 goblinStats += "Equipped: " + typeof(Goblin).Name + "(" + this.HP + "/" + this.maxHP + "HP) at[ " + this.x + "," + this.y + "] with "
-                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")";
+                           + this.GetWeapon().GetWeaponType() + " (" + this.GetWeapon().GetDurability() + "x" + this.GetWeapon().GetDamage() + ")  Gold(" 
+                           + this.GetGoldPurse() + ")" ;
             }
             return goblinStats;
         }

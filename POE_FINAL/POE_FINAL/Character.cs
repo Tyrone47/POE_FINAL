@@ -34,6 +34,11 @@ namespace POE_FINAL
             return this.weapon;
         }
 
+        public void SetWeapon(Weapon weapon)
+        {
+            this.weapon = weapon;
+        }
+
         public int GetGoldPurse()
         {
             return this.goldPurse;
@@ -185,6 +190,21 @@ namespace POE_FINAL
         {
             this.weapon = w;
         }
+        public virtual void Loot(Character target)
+        {
+            if (target.IsDead())
+            {
+                //Loot Gold.
+                this.SetGoldPurse(this.goldPurse + target.GetGoldPurse()); 
+                target.SetGoldPurse(0);
 
+                //Loot Weapon
+                if (target.GetWeapon() != null && this.GetWeapon() == null)
+                {
+                    this.Equip(target.GetWeapon());
+                    target.SetWeapon(null);
+                }
+            }
+        }
     }
 }

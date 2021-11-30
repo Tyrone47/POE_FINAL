@@ -4,18 +4,20 @@ using System.Text;
 
 namespace POE_FINAL
 {
-    class Gold : Item
+    public class Gold : Item
     {
 
         private int goldAmmount;
         private Random random;
-        
-
-
-
+   
         public int GetGoldAmmount()
         {
             return this.goldAmmount;
+        }
+
+        public void SetGoldAmmount( int goldAmmount)
+        {
+            this.goldAmmount = goldAmmount;
         }
 
        
@@ -27,6 +29,14 @@ namespace POE_FINAL
             this.symbol = "0";//Represents Gold in game
         
         }
+
+        public Gold(int x, int y, int goldAmmount) : base(x,y)
+        {
+            this.random = new Random();
+            this.goldAmmount = goldAmmount;
+            this.symbol = "0";
+        }
+
         public override string ToString()
         {
             return "Gold";

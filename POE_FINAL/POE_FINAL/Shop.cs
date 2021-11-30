@@ -4,7 +4,7 @@ using System.Text;
 
 namespace POE_FINAL
 {
-    class Shop 
+    public class Shop 
     {
         private Weapon[] weaponsArray;
 
@@ -15,7 +15,7 @@ namespace POE_FINAL
         public Shop(Character buyer)
         {
             this.buyer = buyer;
-            this.weaponsArray = new Weapon[3];
+            this.weaponsArray = new Weapon[4];
             this.random = new Random();
 
             for (int i = 0; i < this.weaponsArray.Length; i++)
@@ -88,25 +88,22 @@ namespace POE_FINAL
         public string DisplayWeapon(int num)
         {
             string weaponStats = "";
-            for (int i = 0; i < weaponsArray.Length; i++)
+
+            if (num == 0)
             {
-                
-                if (i == 0)
-                {
-                    weaponStats += "Buy " + weaponsArray[0].GetType().Name + " for " + weaponsArray[0].GetCost() + " Gold";
-                }
-                else if (i == 1)
-                {
-                    weaponStats += "Buy " + weaponsArray[1].GetType().Name + "for " + weaponsArray[1].GetCost() + " Gold";
-                }
-                else if (i == 2)
-                {
-                    weaponStats += "Buy " + weaponsArray[2].GetType().Name + "for" +weaponsArray[2].GetCost() + " Gold";
-                }
-                else if (i == 3)
-                {
-                    weaponStats += "Buy " + weaponsArray[3].GetType().Name + "for" + weaponsArray[3].GetCost() + " Gold";
-                }
+                weaponStats += "Buy " + weaponsArray[0].GetWeaponType() + " for " + weaponsArray[0].GetCost() + " Gold";
+            }
+            else if (num == 1)
+            {
+                weaponStats += "Buy " + weaponsArray[1].GetWeaponType() + " for " + weaponsArray[1].GetCost() + " Gold";
+            }
+            else if (num == 2)
+            {
+                weaponStats += "Buy " + weaponsArray[2].GetWeaponType() + " for" + weaponsArray[2].GetCost() + " Gold";
+            }
+            else if (num == 3)
+            {
+                weaponStats += "Buy " + weaponsArray[3].GetWeaponType() + " for" + weaponsArray[3].GetCost() + " Gold";
             }
 
             return weaponStats;

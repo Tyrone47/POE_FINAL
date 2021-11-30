@@ -53,11 +53,17 @@ namespace POE_FINAL
 
         public override void Attack(Character target)
         {
-            if (this.CheckRange(target))
+            if (this.CheckRange(target) && !target.IsDead())
             {
                 target.SetHP(target.GetHP() - 1);
+                if (target.IsDead())
+                {
+                    Loot(target);
+                }
             }
         }
+
+        
 
         public override string ToString()
         {
