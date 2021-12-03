@@ -81,8 +81,8 @@ namespace POE_FINAL
             else
             {
                 playerStats += " Current Weapon: " + this.weapon.GetWeaponType() + System.Environment.NewLine;
-                playerStats += "Weapon Range" + this.weapon.GetRange() + System.Environment.NewLine;
-                playerStats += "Weapon Damage" + this.weapon.GetDamage();
+                playerStats += "Weapon Range " + this.weapon.GetRange() + System.Environment.NewLine;
+                playerStats += "Weapon Damage " + this.weapon.GetDamage();
             }
             
 

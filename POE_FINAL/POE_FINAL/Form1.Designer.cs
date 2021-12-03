@@ -100,7 +100,7 @@ namespace POE_FINAL
             this.txtPlayerStats.Location = new System.Drawing.Point(566, 12);
             this.txtPlayerStats.Multiline = true;
             this.txtPlayerStats.Name = "txtPlayerStats";
-            this.txtPlayerStats.Size = new System.Drawing.Size(194, 163);
+            this.txtPlayerStats.Size = new System.Drawing.Size(194, 213);
             this.txtPlayerStats.TabIndex = 8;
             // 
             // txtEnemyStats
@@ -154,7 +154,6 @@ namespace POE_FINAL
             this.grpShop.TabIndex = 14;
             this.grpShop.TabStop = false;
             this.grpShop.Text = "Shop";
-            this.grpShop.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnWeapon3
             // 

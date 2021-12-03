@@ -39,11 +39,12 @@ namespace POE_FINAL
                 {
                     return MovementEnum.UP;
                 }
-                this.random = new Random();
-                int randMove = this.random.Next(2, 5);
+                
                 isValidMove = false;
                 while (!isValidMove)
                 {
+                    this.random = new Random();
+                    int randMove = this.random.Next(2, 5);
                     MovementEnum moves = (MovementEnum)randMove;
                     if ((moves == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(this.x, this.y - 1))) 
                        || (moves == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(this.x-1, this.y)))
@@ -66,17 +67,18 @@ namespace POE_FINAL
                 {
                     return MovementEnum.DOWN;
                 }
-                this.random = new Random();
-                int randMove = this.random.Next(1, 5);
-
-                while (randMove == 2)//1,3,4
-                {
-                    randMove = this.random.Next(1, 5);
-                } 
+                
 
                 isValidMove = false;
                 while (!isValidMove)
                 {
+                    this.random = new Random();
+                    int randMove = this.random.Next(1, 5);
+
+                    while (randMove == 2)//1,3,4
+                    {
+                        randMove = this.random.Next(1, 5);
+                    }
                     MovementEnum moves = (MovementEnum)randMove;
                     if ((moves == MovementEnum.UP && this.characterVision[0].Equals(new EmptyTile(this.x, this.y + 1)))
                        || (moves == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(this.x - 1, this.y)))
@@ -97,17 +99,19 @@ namespace POE_FINAL
                 {
                     return MovementEnum.LEFT;
                 }
-                this.random = new Random();
-                int randMove = this.random.Next(1, 5);
                
-                while (randMove == 3)
-                {
-                    randMove = this.random.Next(1, 5);
-                }
-                
                 isValidMove = false;
+
                 while (!isValidMove)
                 {
+                    this.random = new Random();
+                    int randMove = this.random.Next(1, 5);
+
+                    while (randMove == 3)
+                    {
+                        randMove = this.random.Next(1, 5);
+                    }
+
                     MovementEnum moves = (MovementEnum)randMove;
                     if ((moves == MovementEnum.UP && this.characterVision[0].Equals(new EmptyTile(this.x, this.y + 1)))
                        || (moves == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(this.x, this.y - 1)))
@@ -128,18 +132,21 @@ namespace POE_FINAL
                 {
                     return MovementEnum.RIGHT;
                 }
-                this.random = new Random();
-                int randMove = this.random.Next(1, 4);
+                
 
                 isValidMove = false;
                 while (!isValidMove)
                 {
+                    this.random = new Random();
+                    int randMove = this.random.Next(1, 4);
                     MovementEnum moves = (MovementEnum)randMove;
                     if ((moves == MovementEnum.UP && this.characterVision[0].Equals(new EmptyTile(getX(),getY() - 1)))
                        || (moves == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(getX(), getY() - 1)))
                        || (moves == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(getX() - 1, getY()))))
                     {
+
                         isValidMove = true;
+
                     }
                 }
                 if (isValidMove)

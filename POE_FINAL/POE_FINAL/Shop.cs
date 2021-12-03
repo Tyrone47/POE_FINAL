@@ -12,6 +12,11 @@ namespace POE_FINAL
 
         private Character buyer;
 
+        public Weapon[] GetWeapon()
+        {
+            return this.weaponsArray;
+        }
+
         public Shop(Character buyer)
         {
             this.buyer = buyer;
@@ -84,7 +89,6 @@ namespace POE_FINAL
             }
 
         }
-
         public string DisplayWeapon(int num)
         {
             string weaponStats = "";
@@ -99,11 +103,11 @@ namespace POE_FINAL
             }
             else if (num == 2)
             {
-                weaponStats += "Buy " + weaponsArray[2].GetWeaponType() + " for" + weaponsArray[2].GetCost() + " Gold";
+                weaponStats += "Buy " + weaponsArray[2].GetWeaponType() + " for " + weaponsArray[2].GetCost() + " Gold";
             }
             else if (num == 3)
             {
-                weaponStats += "Buy " + weaponsArray[3].GetWeaponType() + " for" + weaponsArray[3].GetCost() + " Gold";
+                weaponStats += "Buy " + weaponsArray[3].GetWeaponType() + " for " + weaponsArray[3].GetCost() + " Gold";
             }
 
             return weaponStats;

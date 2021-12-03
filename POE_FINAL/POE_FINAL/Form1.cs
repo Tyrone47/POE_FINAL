@@ -40,7 +40,13 @@ namespace POE_FINAL
             this.gameEngine.MovePlayer(MovementEnum.UP);
             this.gameEngine.MoveEnemies();
             txtDisplayGame.Text = gameEngine.ToString();
-            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString(); 
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
+            this.CanPlayerBuyWeapon();
+            if(this.gameEngine.GetMap().GetHero().IsDead())
+            {
+                MessageBox.Show("Game Over! You Died.");
+                Application.Exit();
+            }
         }
         private void btnDown_Click(object sender, EventArgs e)
         {
@@ -48,8 +54,12 @@ namespace POE_FINAL
             this.gameEngine.MoveEnemies();
             txtDisplayGame.Text = gameEngine.ToString();
             txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
-
-            
+            this.CanPlayerBuyWeapon();
+            if (this.gameEngine.GetMap().GetHero().IsDead())
+            {
+                MessageBox.Show("Game Over! You Died.");
+                Application.Exit();
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -58,6 +68,12 @@ namespace POE_FINAL
             this.gameEngine.MoveEnemies();
             txtDisplayGame.Text = gameEngine.ToString();
             txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
+            this.CanPlayerBuyWeapon();
+            if (this.gameEngine.GetMap().GetHero().IsDead())
+            {
+                MessageBox.Show("Game Over! You Died.");
+                Application.Exit();
+            }
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -66,6 +82,12 @@ namespace POE_FINAL
             this.gameEngine.MoveEnemies();
             txtDisplayGame.Text = gameEngine.ToString();
             txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
+            this.CanPlayerBuyWeapon();
+            if (this.gameEngine.GetMap().GetHero().IsDead())
+            {
+                MessageBox.Show("Game Over! You Died.");
+                Application.Exit();
+            }
         }
 
         private void btnPlayerAttack_Click(object sender, EventArgs e)
@@ -91,7 +113,7 @@ namespace POE_FINAL
         private void DisplayCharacterStats()
         {
             txtPlayerStats.Text = "";
-            txtPlayerStats.Text = txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
             txtEnemyStats.Text = "";
             for (int i = 0; i < this.gameEngine.GetMap().GetEnemyArray().Length; i++)
             {
@@ -112,34 +134,67 @@ namespace POE_FINAL
             txtDisplayGame.Text = this.gameEngine.Load();
         }
 
-        private void btnBuyWeapon_Click(object sender, EventArgs e)
+        private void CanPlayerBuyWeapon()
         {
+            Hero hero = this.gameEngine.GetMap().GetHero();
+            Weapon[] weapon = this.gameEngine.GetShop().GetWeapon();
+            btnWeapon1.Enabled = false;
+            btnWeapon2.Enabled = false;
+            btnWeapon3.Enabled = false;
+            btnWeapon4.Enabled = false;
+
+            if (hero.GetGoldPurse() >= weapon[0].GetCost())
+            {
+                btnWeapon1.Enabled = true;
+            }
+            if (hero.GetGoldPurse() >= weapon[1].GetCost())
+            {
+                btnWeapon2.Enabled = true;
+            }
+            if(hero.GetGoldPurse() >= weapon[2].GetCost())
+            {
+                btnWeapon3.Enabled = true;
+            }
+            if (hero.GetGoldPurse() >= weapon[3].GetCost())
+            {
+                btnWeapon4.Enabled = true;
+            }
 
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void btnWeapon1_Click(object sender, EventArgs e)
         {
+            this.gameEngine.GetShop().Buy(0);
+            this.CanPlayerBuyWeapon();
+            txtPlayerStats.Text = "";
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
 
         }
 
         private void btnWeapon2_Click(object sender, EventArgs e)
         {
-
+            this.gameEngine.GetShop().Buy(1);
+            this.CanPlayerBuyWeapon();
+            txtPlayerStats.Text = "";
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
         }
 
         private void btnWeapon3_Click(object sender, EventArgs e)
         {
-
+            this.gameEngine.GetShop().Buy(2);
+            this.CanPlayerBuyWeapon();
+            txtPlayerStats.Text = "";
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
         }
 
         private void btnWeapon4_Click(object sender, EventArgs e)
         {
-
+            this.gameEngine.GetShop().Buy(3);
+            this.CanPlayerBuyWeapon();
+            txtPlayerStats.Text = "";
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
         }
+
     }
 }

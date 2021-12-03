@@ -181,7 +181,7 @@ namespace POE_FINAL
                 Gold g = (Gold)i;
                 this.IncrementGoldAmmount(g.GetGoldAmmount());
             }
-            else if (i.GetType() == typeof(Weapon))
+            else if (i.GetType() == typeof(MeleeWeapon) || i.GetType() == typeof(RangedWeapon))
             {
                 this.Equip((Weapon)i);
             }
